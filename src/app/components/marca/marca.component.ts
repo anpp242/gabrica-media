@@ -22,6 +22,13 @@ export class MarcaComponent implements OnInit {
   public url_productos: string;
   public codigos: object[];
 
+  //Filtros
+  public productoFiltro: any = { nombre_del_producto: '' };
+  public especieFiltro: any = { especie: '' };
+  public categoriaFiltro: any = { categoria_del_producto: '' };
+  public especialidadFiltro: any = { especialidad_del_producto: '' };
+  public sucategoriaFiltro: any = { subcategoria_del_producto: '' };
+
   constructor(
     private _router: Router,
     private _route: ActivatedRoute,
@@ -183,6 +190,27 @@ ${instrucciones}\r\n \r\n
       .then(function (content) {
       FileSaver.saveAs(content, title + ".zip");
     });
+  }
+
+  //Limpiar Filtros
+  limpiarproductoFiltro(){
+    this.productoFiltro = { nombre_del_producto: '' };
+  }
+
+  limpiarespecieFiltro(){
+    this.especieFiltro = { especie: '' };
+  }
+  
+  limpiarcategoriaFiltro(){
+    this.categoriaFiltro = { categoria_del_producto: '' };
+  }
+
+  limpiarespecialidadFiltro(){
+    this.especialidadFiltro = { especialidad_del_producto: '' };
+  }
+
+  limpiarsucategoriaFiltro(){
+    this.sucategoriaFiltro = { subcategoria_del_producto: '' };
   }
 
 }

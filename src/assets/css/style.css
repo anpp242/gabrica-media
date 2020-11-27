@@ -763,7 +763,7 @@ footer h3{
     border: 1px solid #E5E5E5;
     box-sizing: border-box;
     border-radius: 11px;
-    width: 75%;
+    width: 95%;
     color: #3C3C3C;
     font-size: 14px;
 }
@@ -820,6 +820,7 @@ footer h3{
 }
 
 #filtros-aplicados h6{
+    position: relative;
     background: rgba(83, 27, 162, 0.2);
     padding: 10px 25px;
     color: #531BA2;
@@ -828,6 +829,20 @@ footer h3{
     float: left;
     display: flex;
     border-radius: 30px;
+}
+
+#filtros-aplicados h6 span{
+    position: absolute;
+    top: -3px;
+    right: -7px;
+    background: #8c819c;
+    color: #ffffff;
+    padding: 2px 7px;
+    border-radius: 30px;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px){

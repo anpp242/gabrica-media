@@ -29,6 +29,7 @@
     "jszip-utils": "^0.1.0",
     "ngx-bootstrap": "^6.2.0",
     "ngx-filesaver": "^11.0.0",
+    "ngx-filter-pipe": "^2.1.2",
     "ngx-infinite-scroll": "^10.0.0",
     "ngx-modal": "0.0.29",
     "ngx-owl-carousel-o": "^4.0.0",

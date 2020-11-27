@@ -31,6 +31,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { FormsModule } from '@angular/forms';
 import { MarcaComponent } from './components/marca/marca.component';
 import { ReplaceString } from './pipes/replaces.pipe';
+import { FilterPipeModule } from 'ngx-filter-pipe';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { ReplaceString } from './pipes/replaces.pipe';
     InfiniteScrollModule,
     HttpClientModule,
     ModalModule.forRoot(),
-    FormsModule
+    FormsModule,
+    FilterPipeModule
   ],
   providers: [
     appRoutingProviders

@@ -14,39 +14,80 @@
 
 <section id="filtros">
     <div class="container">
-        <form action="" method="post">
+        <div>
             <div>
-                <input type="text" name="" id="" placeholder="Realice su búsqueda personalizada"> <button class="cta-morado">Buscar</button>
+                <input type="text" name="" id="filtroTexto" [(ngModel)]="productoFiltro.nombre_del_producto" placeholder="Realice su búsqueda personalizada">
             </div>
 
             <div>
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="especieFiltro.especie">
                     <option value="">Especie</option>
                     <option value="Perro">Perro</option>
                     <option value="Gato">Gato</option>
-                    <option value="Caballo">Caballo</option>
+                    <option value="Equino">Caballo</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="categoriaFiltro.categoria_del_producto">
                     <option value="">Categoría</option>
+                    <option value="Alimento">Alimento</option>
+                    <option value="Vitaminas y Nutricionales">Vitaminas y Nutricionales</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="especialidadFiltro.especialidad_del_producto">
                     <option value="">Especialidad de producto</option>
+                    <option value="Nutricion y mantenimiento">Nutricion y mantenimiento</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="sucategoriaFiltro.subcategoria_del_producto">
                     <option value="">Subcategoría de producto</option>
+                    <option value="Seco">Seco</option>
+                    <option value="Humedo">Humedo</option>
+                    <option value="treats">treats</option>
+                    <option value="Snack">Snack</option>
+                    <option value="Suplementos">Suplementos</option>
+                    <option value="Nutraceuticos">Nutraceuticos</option>
                 </select>
             </div>
-        </form>
+        </div>
     </div>
 </section>
+
+<div *ngIf="productoFiltro.nombre_del_producto || especieFiltro.especie || categoriaFiltro.categoria_del_producto || especialidadFiltro.especialidad_del_producto || sucategoriaFiltro.subcategoria_del_producto">
+    <hr>
+    <section id="filtros-aplicados">
+        <div class="container">
+            <div class="box-filtros">
+                <h6 *ngIf="productoFiltro.nombre_del_producto">
+                    <span (click)="limpiarproductoFiltro()">x</span>
+                    {{productoFiltro.nombre_del_producto}}
+                </h6>
+                <h6 *ngIf="especieFiltro.especie">
+                    <span (click)="limpiarespecieFiltro()">x</span>
+                    {{especieFiltro.especie}}
+                </h6>
+                <h6 *ngIf="categoriaFiltro.categoria_del_producto">
+                    <span (click)="limpiarcategoriaFiltro()">x</span>
+                    {{categoriaFiltro.categoria_del_producto}}
+                </h6>
+                <h6 *ngIf="especialidadFiltro.especialidad_del_producto">
+                    <span (click)="limpiarespecialidadFiltro()">x</span>
+                    {{especialidadFiltro.especialidad_del_producto}}
+                </h6>
+                <h6 *ngIf="sucategoriaFiltro.subcategoria_del_producto">
+                    <span (click)="limpiarsucategoriaFiltro()">x</span>
+                    {{sucategoriaFiltro.subcategoria_del_producto}}
+                </h6>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <hr>
+</div>
 
 <section id="contenido-productos">
     <div class="container">
         <div class="row">
-            <div class="col-md-4" *ngFor="let producto of productos">
+            <div class="col-md-4" *ngFor="let producto of productos | filterBy: productoFiltro | filterBy: especieFiltro | filterBy: especialidadFiltro | filterBy: categoriaFiltro | filterBy: sucategoriaFiltro">
                 <div class="box-item-campania">
                     <owl-carousel-o [options]="sliderProducto" *ngIf="producto.imagenes">
                         <ng-template carouselSlide *ngFor="let img of producto.imagenes">
@@ -54,7 +95,7 @@
                         </ng-template>
                     </owl-carousel-o>
                     <div *ngIf="!producto.imagenes">
-                        <p>No hay imagen disponible</p>
+                        <img class="img-fluid img-item-producto" src="../../../assets/images/no-image.png" alt="">
                     </div>
                     
                     <div class="box-txt-item-campania">
@@ -63,7 +104,7 @@
                             Este paquete contiene:
                         </p>
                         <ul>
-                            <li>Imágenes de producto</li>
+                            <li *ngIf="producto.imagenes">Imágenes de producto</li>
                             <li>Textos y descripciones</li>
                         </ul>
 
