@@ -1,0 +1,103 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<section id="cabecera-interna" class="cabecera-videos">
+    <div class="container d-flex align-items-center ">
+        <div class="box-txt-cabecera-campanias">
+            <h1>Catálogo de productos</h1>
+            <div id="tags">
+                <h6>Descargue las imágenes de todos los productos del portafolio Gabrica.</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="filtros">
+    <div class="container">
+        <form action="" method="post">
+            <div>
+                <input type="text" name="" id="" placeholder="Realice su búsqueda personalizada"> <button class="cta-morado">Buscar</button>
+            </div>
+
+            <div>
+                <select name="" id="">
+                    <option value="">Especie</option>
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Caballo">Caballo</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Categoría</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Especialidad de producto</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Subcategoría de producto</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="contenido-productos">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let producto of productos">
+                <div class="box-item-campania">
+                    <owl-carousel-o [options]="sliderProducto" *ngIf="producto.imagenes">
+                        <ng-template carouselSlide *ngFor="let img of producto.imagenes">
+                            <img class="img-fluid img-item-producto" src="{{url_productos}}{{img.imagen}}" alt="" />
+                        </ng-template>
+                    </owl-carousel-o>
+                    <div *ngIf="!producto.imagenes">
+                        <p>No hay imagen disponible</p>
+                    </div>
+                    
+                    <div class="box-txt-item-campania">
+                        <h4>{{producto.nombre_del_producto | replaces: "&ptncm" : ';'}}</h4>
+                        <p>
+                            Este paquete contiene:
+                        </p>
+                        <ul>
+                            <li>Imágenes de producto</li>
+                            <li>Textos y descripciones</li>
+                        </ul>
+
+                        <button class="cta-blanco-b-morado" (click)="download(
+                            producto.nombre_del_producto, 
+                            producto.bullets, 
+                            producto.imagenes,
+                            producto.edad_etapa,
+                            producto.especie,
+                            producto.descripcion,
+                            producto.sabor,
+                            producto.contenido,
+                            producto.unidad_medida,
+                            producto.presentacion,
+                            producto.especialidad_del_producto,
+                            producto.marca,
+                            producto.subcategoria_del_producto,
+                            producto.instrucciones
+                        )">Descargar</button>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="checkbox" name="seleccionar" id="seleccionar" class="from-control"/>
+                                </div>
+                                <div class="col">
+                                    <label for="seleccionar"> Selecciona para descargar varios paquetes de productos.</label>  
+                                </div>
+                            </div> 
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,15 @@
+<div class="loader" *ngIf="!slides">
+    <div class="container text-center">
+        <img src="../../../assets/images/loader.gif" alt="" width="180"><br/>
+    </div>
+</div>
+
+<section id="slider-home">
+    <owl-carousel-o [options]="sliderHomeOptions" *ngIf="slides">
+        <ng-template carouselSlide *ngFor="let slide of slides">
+            <app-slide
+                [slide] = "slide"
+            ></app-slide>
+        </ng-template>  
+    </owl-carousel-o>
+</section>   

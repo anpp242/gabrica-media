@@ -1,0 +1,67 @@
+<div class="box-item-campania" >
+    <img class="img-fluid img-item-campania" src="{{url_recursos}}{{campania.imagen_card}}" alt="" />
+    <div class="box-txt-item-campania">
+        <h4>{{campania.titulo}}</h4>
+        <p>
+            {{campania.descripcion_corta}}
+        </p>
+            <a data-fancybox data-src="#hidden-content" href="javascript:;" class="conoce-mas" (click)="openModal(template)">Conoce más</a>
+        <hr/>
+        <ul>
+            <li>
+                <a [href]="url_recursos + campania.download_url" download><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+            </li>
+            <li>
+                <a [href]="url_recursos + campania.facebook_url" download><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+            </li>
+            <li>
+                <a [href]="url_recursos + campania.pantallas_url" download><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+            </li>
+            <li>
+                <a [href]="url_recursos + campania.email_url" download><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+            </li>
+            <li>
+                <a [href]="url_recursos + campania.whatsapp_url" download><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<ng-template #template>
+    <a class="cerrar-modal" (click)="modalRef.hide()">X</a>   
+    <div class="modal-body">
+        <img class="img-fluid" src="{{url_recursos}}{{campania.pantallas_url}}" alt="{{campania.titulo}}"/>        
+        <div class="box-item-info-modal-campania">
+            <div id="logo-interna" class="logo-modal-campania">
+                <img src="{{url_recursos}}{{campania.imagen_modal}}" alt="{{campania.titulo}}">
+            </div>
+            <div class="row">
+                <div class="col-md-7">
+                    <h3>{{campania.titulo}}</h3>
+                    <p>
+                        {{campania.descripcion}}
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <ul>
+                        <li>
+                            <a><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+                        </li>
+                        <li>
+                            <a><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+                        </li>
+                        <li>
+                            <a><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+                        </li>
+                        <li>
+                            <a><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+                        </li>
+                        <li>
+                            <a><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>

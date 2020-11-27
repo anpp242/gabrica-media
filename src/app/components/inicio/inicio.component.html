@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<app-slides></app-slides>
+
+<section id="modulos">
+    <div class="container">
+        <owl-carousel-o [options]="sliderHomeModulesOptions">
+
+            <ng-template carouselSlide>
+                <div class="modulos-elemento" id="campanias">
+                    <img class="icos-modulos" src="../../assets/images/ico-campanias.svg"/>
+                    <h3>Nuestras campañas</h3>
+                    <p>Accede a las piezas gráficas para comunicación a padres de mascota.</p>
+                    <a [routerLink]="['/campanias']">Conozca más <span>></span></a>
+                </div>
+            </ng-template>  
+    
+            <ng-template carouselSlide>
+                <div class="modulos-elemento" id="productos">
+                    <img class="icos-modulos" src="../../assets/images/ico-catalogo.svg"/>
+                    <h3>Catálogo de productos</h3>
+                    <p>Descargue las imágenes de todos los productos del portafolio Gabrica.</p>
+                    <a [routerLink]="['/catalogo-productos']">Descargue aquí <span>></span></a>
+                </div>
+            </ng-template> 
+            
+            <ng-template carouselSlide>
+                <div class="modulos-elemento" id="videos">
+                    <img class="icos-modulos" src="../../assets/images/ico-videos.svg"/>
+                    <h3>Biblioteca de videos</h3>
+                    <p>Descargue los videos de nuestras marcas para compartir con tus clientes.</p>
+                    <a [routerLink]="['/videos']">Conozca más <span>></span></a>
+                </div>
+            </ng-template> 
+    
+        </owl-carousel-o>
+    </div>
+</section>
+
+<!--<app-condiciones-comerciales></app-condiciones-comerciales>-->
+
+<app-footer></app-footer>

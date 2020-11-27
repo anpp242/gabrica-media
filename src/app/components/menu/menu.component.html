@@ -1,0 +1,24 @@
+<!--Menú-->
+<nav class="navbar navbar-dark bg-dark-gb navbar-expand-lg">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/inicio']" routerLinkActive="active" >Inicio<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/campanias']" routerLinkActive="active">Nuestras campañas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/catalogo-productos']" routerLinkActive="active">catálogo de productos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="['/videos']" routerLinkActive="active">Biblioteca de videos</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

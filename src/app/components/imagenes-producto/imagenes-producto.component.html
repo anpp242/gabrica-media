@@ -1,0 +1,59 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<section id="cabecera-interna" class="cabecera-videos">
+    <div class="container d-flex align-items-center ">
+        <div class="box-txt-cabecera-campanias">
+            <h1>Catálogo de productos</h1>
+            <div id="tags">
+                <h6>Descargue las imágenes de todos los productos del portafolio Gabrica.</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="filtros">
+    <div class="container">
+        <form action="" method="post">
+            <div>
+                <input type="text" name="" id="" placeholder="Realice su búsqueda personalizada"> <button class="cta-morado">Buscar</button>
+            </div>
+
+            <div>
+                <select name="" id="">
+                    <option value="">Especie</option>
+                    <option value="Perro">Perro</option>
+                    <option value="Gato">Gato</option>
+                    <option value="Caballo">Caballo</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Categoría</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Especialidad de producto</option>
+                </select>
+
+                <select name="" id="">
+                    <option value="">Subcategoría de producto</option>
+                </select>
+            </div>
+        </form>
+    </div>
+</section>
+
+<section id="contenido-productos">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-2" *ngFor="let marca of marcas">
+                <app-producto
+                    [marca] = "marca"
+                ></app-producto>                  
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
+

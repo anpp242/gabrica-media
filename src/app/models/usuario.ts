@@ -1,0 +1,26 @@
+export class Usuario{
+    constructor(
+        public id_cliente: string,
+        public pais: string,
+        public nombre_cliente: string,
+        public tipo_cliente: string,
+        public segmento: string,
+        public Zona: string,
+        public grupo_cliente: string,
+        public condicionEntrega: string,
+        public fechaCreacion : object,
+        public cupoCredito: string,
+        public condicionPago: string,
+        public estado: string,
+        public bloqueoCartera: string,
+        public grupoEstadistico: string,
+        public desc_efectivo: string,
+        public lineaDescuento: string,
+        public sitioXciudad: string,
+        public sitio: string,
+        public regionNielsen: string,
+        public Subsegmento: string,
+        public cluster: string,
+        public nitAsociado: string,
+    ){}
+}

@@ -1,0 +1,43 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<section id="cabecera-interna" class="cabecera-videos">
+    <div class="container d-flex align-items-center ">
+        <div class="box-txt-cabecera-campanias">
+            <h1>Biblioteca de videos</h1>
+            <div id="tags">
+                <h6>Descargue los videos de nuestras marcas para compartir con tus clientes.</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="loader" *ngIf="!videos">
+    <div class="container text-center">
+        <img src="../../../assets/images/loader.gif" alt="" width="180"><br/>
+    </div>
+</div>
+
+<section id="contenido-interna">
+    <div class="container">
+        <div class="row" *ngIf="videos">
+            <div class="col-md-4" *ngFor="let video of videos | slice : startPage:paginationLimit">
+                <app-video 
+                    [video] = "video"
+                ></app-video>
+            </div>
+        </div>
+    </div>
+
+    <div class="container box-cargar-mas-promociones" *ngIf="videos">
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit < videos.length" (click)="showMoreItems()">
+            Cargar más videos
+        </button>
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 3" (click)="showLessItems()">
+            Cargar menos videos
+        </button>
+    </div>  
+</section>
+
+<app-footer></app-footer>
+

@@ -1,0 +1,28 @@
+<section id="login">
+    <div class="row">
+        <div id="login-img" class="col-md-6">
+        </div>
+        <div id="login-form" class="col-md-6 d-flex align-items-center">
+            <div>
+                <img class="img-fluid" src="../../assets/images/LOGO_GABRICAMEDIA.png" alt="Logo Gabrica Media">
+                <h2>Bienvenidos</h2>
+                <p>
+                    A la plataforma donde puedes encontrar combos, promociones especiales y material 
+                    audiovisual para que puedas crear contenido y comunicaciones increíbles para tus 
+                    clientes.
+                </p>
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                    <div>
+                        <input type="text" name="id_usuario" placeholder="Ingrese su NIT" #id_usuario="ngModel" [(ngModel)]="login.id_usuario" required/>
+                        <button [disabled]="loginForm.invalid">Iniciar sesión</button>
+                    </div>                
+
+                    <small class="alert alert-danger" *ngIf="!id_usuario.valid && id_usuario.touched">
+                        *Debe ingresar un NIT para ingresar
+                    </small>
+                </form>
+                <p class="txt-legal" id="legal-login">Todos los derechos reservados GABRICA ®<p>
+            </div>
+        </div>
+    </div>        
+</section>

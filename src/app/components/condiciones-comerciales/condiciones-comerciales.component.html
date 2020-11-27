@@ -1,0 +1,67 @@
+<section id="condiciones-comerciales">
+    <div class="container">
+        <h2>Lo mejor para tu negocio</h2>
+        <p>Conoce las condiciones comerciales que tenemos para tu negocio en el mes de noviembre.</p>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="" *ngFor="let condicion of condiciones | slice : startPage:paginationLimit; let i = index" [ngClass]="{'col-md-8': i == 0, 'col-md-4': i != 0}">
+
+                <div class="item-condiciones item-first" *ngIf="i == 0">
+                    <div class="box-item-condiciones-first d-flex align-items-center">
+                        <div class="item-condiciones-txt float-left">
+                            <h3>{{i}} Raspa y gana. Tropi Show de Tropicana</h3>
+                            <p>
+                                Recuerda en preguntar a tu supervisor por la activacion 
+                                Raspa y Gana con Guaumor y Miaumor en los PDV.
+                            </p>
+                        </div>
+                        <img src="../../assets/images/miaumor-guaumor.png" alt="" width="150">
+                    </div>
+                    <a href="#">Conoce más</a>
+                </div>
+
+                <div class="item-condiciones item-second" *ngIf="i == 1">
+                    <div class="box-item-condiciones-second d-flex align-items-center">
+                        <div class="item-condiciones-txt float-left">
+                            <h3>{{i}} Club Vets</h3>
+                            <p>
+                                Haz parte del grupo Club selecto de veterinarios Hills y entérate de 
+                                todos los beneficios que tenemos para ti
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#">Conoce más</a>
+                </div>
+
+                <div class="item-condiciones all-items" *ngIf="i != 0 && i != 1">    
+                    <img class="img-fluid"  src="../../assets/images/caballo.png" alt="">                    
+                    <div class="box-item-condiciones-all d-flex align-items-center">
+                        <div class="item-condiciones-txt float-left">
+                            <h3>{{i}} Club Vets</h3>
+                            <p>
+                                Haz parte del grupo Club selecto de veterinarios Hills y entérate de 
+                                todos los beneficios que tenemos para ti
+                            </p>
+                        </div>
+                    </div>
+                    <a href="#">Conoce más</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div> 
+
+    <div class="container box-cargar-mas-promociones">
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit < condiciones.length" (click)="showMoreItems()">
+            Conoce más promociones
+        </button>
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 5" (click)="showLessItems()">
+            Conoce menos promociones
+        </button>
+    </div>
+    
+</section>

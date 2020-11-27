@@ -1,0 +1,83 @@
+<app-header></app-header>
+<app-menu></app-menu>
+
+<section id="cabecera-interna" class="cabecera-campanias">
+    <div class="container d-flex align-items-center">
+        <div class="box-txt-cabecera-campanias">
+            <h1>Nuestras campañas</h1>
+            <div id="tags">
+                <h6>Accede a las piezas gráficas para comunicación a padres de mascota.</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="loader" *ngIf="!campanias">
+    <div class="container text-center">
+        <img src="../../../assets/images/loader.gif" alt="" width="180"><br/>
+    </div>
+</div>
+
+<section id="contenido-interna">
+    <div class="container">
+        <div class="row" *ngIf="campanias">
+            <div class="col-md-4" *ngFor="let campania of campanias | slice : startPage:paginationLimit"  >
+                <app-campania
+                    [campania]="campania"
+                ></app-campania>
+            </div>
+        </div>
+    </div>
+
+    <div class="container box-cargar-mas-promociones" *ngIf="campanias">
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit < campanias.length" (click)="showMoreItems()">
+            Ver mas campañas
+        </button>
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 3" (click)="showLessItems()">
+            Ver menos campañas
+        </button>
+    </div>
+</section>
+
+<!--Modal campania-->
+<div style="display: none; max-width: 740px;" id="hidden-content">
+    <img class="img-fluid" src="../../assets/images/cab-modal" alt="Titulo campaña"/>        
+    <div class="box-item-info-modal-campania">
+        <div id="logo-interna" class="logo-modal-campania">
+            <img src="../../assets/images/Logo-max.svg" alt="Max">
+        </div>
+        <div class="row">
+            <div class="col-md-7">
+                <h3>Simparica: antiparasitario externo</h3>
+                <p>
+                    Encuentre piezas gráficas para diferentes medios de comunicación 
+                    sobre Simparica, la solución más completa segura y eficaz contra 
+                    pulgas, ácaros y garrapatas. Recomiende al padre de mascota el uso 
+                    de este antiparasitario oral externo con eficacia sostenida por 
+                    más de 5 semanas.
+                </p>
+            </div>
+            <div class="col-md-5">
+                <ul>
+                    <li>
+                        <a><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+                    </li>
+                    <li>
+                        <a><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+                    </li>
+                    <li>
+                        <a><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+                    </li>
+                    <li>
+                        <a><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+                    </li>
+                    <li>
+                        <a><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-footer></app-footer>

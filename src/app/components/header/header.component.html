@@ -1,0 +1,13 @@
+<header>
+    <div class="container">
+        <div class="row ">
+            <div id="logo" class="col-md-8 d-flex align-items-center">
+                <img class="img-fluid" src="../../assets/images//LOGO_GABRICAMEDIA.png" alt="Logo Gabrica Media">
+            </div>
+            <div id="bienvenida" class="col-md-4 d-flex align-items-center">
+                <img src="../../assets/images//user.png" alt="" class="img-fluid"> <p>{{nombre_Cliente | titlecase}} </p> <p id="cerrar" (click)="MostrarCerarSesion()">.<br/>.<br/>.<p>
+                <button *ngIf="btn_cerrar" (click)="cerrarSesion()"> Cerrar sesión </button>
+            </div>
+        </div>            
+    </div>
+</header>
