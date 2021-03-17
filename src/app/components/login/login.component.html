@@ -4,17 +4,19 @@
         </div>
         <div id="login-form" class="col-md-6 d-flex align-items-center">
             <div>
-                <img class="img-fluid" src="../../assets/images/LOGO_GABRICAMEDIA.png" alt="Logo Gabrica Media">
-                <h2>Bienvenidos</h2>
+                <img class="img-fluid" src="./assets/images/LOGO_GABRICAMEDIA.png" alt="Logo Gabrica Media" ng-fallimg="logo">
+                <h2>Bienvenido</h2>
                 <p>
-                    A la plataforma donde puedes encontrar combos, promociones especiales y material 
-                    audiovisual para que puedas crear contenido y comunicaciones increíbles para tus 
-                    clientes.
+                    Ingrese aquí a la nueva plataforma de marketing para clientes Gabrica. 
+                    Descubra en esta herramienta información sobre nuestras marcas, productos 
+                    y campañas con contenido multimedia, como imágenes y videos para medios 
+                    digitales, que permitirán potencializar la comunicación con los padres de 
+                    mascota desde los puntos de venta, ya sean físicos o plataformas digitales.							
                 </p>
-                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+                <form #loginForm="ngForm" (ngSubmit)="onSubmit()" method="POST">
                     <div>
                         <input type="text" name="id_usuario" placeholder="Ingrese su NIT" #id_usuario="ngModel" [(ngModel)]="login.id_usuario" required/>
-                        <button [disabled]="loginForm.invalid">Iniciar sesión</button>
+                        <button [disabled]="loginForm.invalid" id="login">Iniciar sesión</button>
                     </div>                
 
                     <small class="alert alert-danger" *ngIf="!id_usuario.valid && id_usuario.touched">

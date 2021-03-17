@@ -17,7 +17,7 @@ export class CampaniasComponent implements OnInit {
     private _campaniaService: CampaniaService
   ) {
     this.startPage = 0;
-    this.paginationLimit = 3;
+    this.paginationLimit = 6;
   }
 
   ngOnInit(): void {

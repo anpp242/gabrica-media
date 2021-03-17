@@ -48,6 +48,12 @@ const appRoutes: Routes = [
         canActivate: [CheckLoginGuard]
     },
     { 
+        path: 'catalogo-productos/marcas',  
+        redirectTo: '/catalogo-productos', 
+        pathMatch: 'full',
+        canActivate: [CheckLoginGuard]
+    },
+    { 
         path: "catalogo-productos/marcas/:brand", 
         component: MarcaComponent,
         canActivate: [CheckLoginGuard]

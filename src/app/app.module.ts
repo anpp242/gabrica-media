@@ -32,6 +32,10 @@ import { FormsModule } from '@angular/forms';
 import { MarcaComponent } from './components/marca/marca.component';
 import { ReplaceString } from './pipes/replaces.pipe';
 import { FilterPipeModule } from 'ngx-filter-pipe';
+import { NgFallimgModule } from 'ng-fallimg';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { CleanId } from './pipes/cleanId.pipe';
+import { SortByPipe } from './pipes/order.pipe';
 
 @NgModule({
   declarations: [
@@ -56,7 +60,9 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     SlidesComponent,
     LoaderComponent,
     MarcaComponent,
-    ReplaceString
+    ReplaceString,
+    CleanId,
+    SortByPipe
   ],
   imports: [
     BrowserModule,
@@ -67,7 +73,12 @@ import { FilterPipeModule } from 'ngx-filter-pipe';
     HttpClientModule,
     ModalModule.forRoot(),
     FormsModule,
-    FilterPipeModule
+    NgxPaginationModule,
+    FilterPipeModule,
+    NgFallimgModule.forRoot({
+      default: '',
+      logo: '/assets/images/LOGO_GABRICAMEDIA.png'
+    })
   ],
   providers: [
     appRoutingProviders

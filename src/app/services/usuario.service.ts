@@ -8,6 +8,12 @@ import {  Global  } from './global';
 export class UsuarioService{
     public usuario: Usuario[];
     public url: string;
+    httpOptions = {
+        headers: new HttpHeaders({
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': '',
+        })
+    };
 
     constructor(
         public _http: HttpClient
@@ -16,7 +22,7 @@ export class UsuarioService{
     }
 
     getUsuario(id:string ):Observable<any>{
-        return this._http.get(this.url + 'lista-usuarios/' + id);
+        return this._http.get(this.url + 'usuarios/' + id);
     }
 
     /*getUsuario():Observable<any>{
@@ -25,5 +31,11 @@ export class UsuarioService{
 
     logIn(){
         return localStorage.getItem('id');
+    }
+
+    registrarEntrada(nit:any):Observable<any>{
+        let params = JSON.stringify(nit);
+        console.log(params)
+        return this._http.post<any>(this.url + 'registrar-login',  params,  this.httpOptions);
     }
 }

@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
   }
 
   MostrarCerarSesion(){
-    this.btn_cerrar = true;
+    this.btn_cerrar = !this.btn_cerrar;
   }
 
   cerrarSesion(){

@@ -6,44 +6,172 @@
         <div class="box-txt-cabecera-campanias">
             <h1>Catálogo de productos</h1>
             <div id="tags">
-                <h6>Descargue las imágenes de todos los productos del portafolio Gabrica.</h6>
+                <h6>En esta sección usted puede realizar la búsqueda de los productos del catálogo de Gabrica por marcas, especies, categorías y especialidades, para descargar sus imágenes y descripciones para páginas web y medios digitalesa</h6>
             </div>
         </div>
     </div>
 </section>
 
+<div class="container">
+    <p>Si usted prefiere descargar todo el paquete de imágenes y descripciones de producto haga click en el siguiente botón de descarga.</p>
+    <a class="cta-morado" href="https://catalogobucket.s3.us-east-2.amazonaws.com/GabricaMedia.zip" target="_blank">Descargar el paquete completo</a>
+</div>
+
+
 <section id="filtros">
     <div class="container">
-        <form action="" method="post">
+        <div>
             <div>
-                <input type="text" name="" id="" placeholder="Realice su búsqueda personalizada">
+                <input type="text" name="" id="filtroTexto" [(ngModel)]="productoFiltro.nombre_del_producto" placeholder="Realice su búsqueda personalizada">
             </div>
 
             <div>
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="especieFiltro.especie">
                     <option value="">Especie</option>
                     <option value="Perro">Perro</option>
                     <option value="Gato">Gato</option>
-                    <option value="Caballo">Caballo</option>
+                    <option value="Equino">Caballo</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="categoriaFiltro.categoria_del_producto">
                     <option value="">Categoría</option>
+                    <option value="Alimento ">Alimento </option>
+                    <option value="Medicamentos">Medicamentos</option>
+                    <option value="Aseo y belleza">Aseo y belleza</option>
+                    <option value="Vitaminas y Nutricionales">Vitaminas y Nutricionales</option>
+                    <option value="Accesorios y Comportamiento">Accesorios y Comportamiento</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="especialidadFiltro.especialidad_del_producto">
                     <option value="">Especialidad de producto</option>
+                    <option value="Mantenimiento y Nutricion ">Mantenimiento y Nutricion </option>
+                    <option value="Geriatria y mantenimiento">Geriatria y mantenimiento</option>
+                    <option value="Geriatria youthful">Geriatria youthful</option>
+                    <option value="Nutricion y mantenimiento">Nutricion y mantenimiento</option>
+                    <option value="Pediatria">Pediatria</option>
+                    <option value="Pediatria indoor">Pediatria indoor</option>
+                    <option value="Geriatria mantenimiento ">Geriatria mantenimiento </option>
+                    <option value="Recuperacion">Recuperacion</option>
+                    <option value="Obesidad">Obesidad</option>
+                    <option value="Obesidad/ diabetes">Obesidad/ diabetes</option>
+                    <option value="Gastroenterologia">Gastroenterologia</option>
+                    <option value="Dermatologia">Dermatologia</option>
+                    <option value="Osteoarticular">Osteoarticular</option>
+                    <option value="Urologia">Urologia</option>
+                    <option value="Nefrologia">Nefrologia</option>
+                    <option value="Cardiologa ">Cardiologa </option>
+                    <option value="Hepatico">Hepatico</option>
+                    <option value="Dermatologias">Dermatologias</option>
+                    <option value="Obesidad/diabetes">Obesidad/diabetes</option>
+                    <option value="Dermatologia ">Dermatologia </option>
+                    <option value="GERIATRIA">GERIATRIA</option>
+                    <option value="SNACK/ NUTRICION Y MANTENIMIENTO">SNACK/ NUTRICION Y MANTENIMIENTO</option>
+                    <option value="SNACK/ SALUD ORAL">SNACK/ SALUD ORAL</option>
+                    <option value="SNACK/HAIRBALL">SNACK/HAIRBALL</option>
+                    <option value="SNACK/NUTRICION Y MANTENIMIENTO">SNACK/NUTRICION Y MANTENIMIENTO</option>
+                    <option value="SNACK/INDOOR">SNACK/INDOOR</option>
+                    <option value="SNACK/SALUD ORAL">SNACK/SALUD ORAL</option>
+                    <option value="Obesidad ">Obesidad </option>
+                    <option value="Nutricion y mantenimiento/hairball">Nutricion y mantenimiento/hairball</option>
+                    <option value="Cardiologia ">Cardiologia </option>
+                    <option value="Cuidado hepatico">Cuidado hepatico</option>
+                    <option value="Gastrointestinal">Gastrointestinal</option>
+                    <option value="Nutricion y mantenimiento/snack">Nutricion y mantenimiento/snack</option>
+                    <option value="Dermatología">Dermatología</option>
+                    <option value="Aseo y belleza">Aseo y belleza</option>
+                    <option value="Comportamiento">Comportamiento</option>
+                    <option value="Salud oral">Salud oral</option>
+                    <option value="Accesorios">Accesorios</option>
+                    <option value="Recuperación">Recuperación</option>
+                    <option value="Cirugia y anestesia">Cirugia y anestesia</option>
+                    <option value="Reproduccion">Reproduccion</option>
+                    <option value="Cardiologia">Cardiologia</option>
+                    <option value="respiratorio">respiratorio</option>
+                    <option value="Oftamologia">Oftamologia</option>
+                    <option value="Gastroentericos">Gastroentericos</option>
+                    <option value="Endocrinología">Endocrinología</option>
+                    <option value="Nutricion y mantenimiento / Hairball">Nutricion y mantenimiento / Hairball</option>
+                    <option value="Inmunologia">Inmunologia</option>
+                    <option value="Respiratorios">Respiratorios</option>
+                    <option value="Gastroenterología">Gastroenterología</option>
+                    <option value="Reproducción">Reproducción</option>
+                    <option value="Nutrición y mantenimiento">Nutrición y mantenimiento</option>
                 </select>
 
-                <select name="" id="">
+                <select name="" id="" [(ngModel)]="sucategoriaFiltro.subcategoria_del_producto">
                     <option value="">Subcategoría de producto</option>
+                    <option value="Accesorios de Belleza">Accesorios de Belleza </option>
+                    <option value="Accesorios de entrenamiento">Accesorios de entrenamiento </option>
+                    <option value="Accesorios de Hogar">Accesorios de Hogar </option>
+                    <option value="Anestesicos, Analepticos y tranquilizantes">Anestesicos, Analepticos y tranquilizantes </option>
+                    <option value="Antialergicos">Antialergicos </option>
+                    <option value="Antibioticos">Antibioticos </option>
+                    <option value="Antiflamatorios y analgesicos">Antiflamatorios y analgesicos </option>
+                    <option value="antimicoticos">antimicoticos </option>
+                    <option value="Antiparasitario externo">Antiparasitario externo </option>
+                    <option value="Antiparasitario externo e interno">Antiparasitario externo e interno </option>
+                    <option value="antiparasitarios externos">antiparasitarios externos </option>
+                    <option value="Antiparasitarios Internos">Antiparasitarios Internos </option>
+                    <option value="Arena">Arena </option>
+                    <option value="Cardiologicos">Cardiologicos </option>
+                    <option value="Cardiorespiratorio">Cardiorespiratorio </option>
+                    <option value="Feromonas">Feromonas </option>
+                    <option value="Gastroentericos">Gastroentericos </option>
+                    <option value="Higiene oral">Higiene oral </option>
+                    <option value="Hormonales">Hormonales </option>
+                    <option value="Humedo">Humedo </option>
+                    <option value="Limpiadores y barreras">Limpiadores y barreras </option>
+                    <option value="Medicamentos y Suplementos">Medicamentos y Suplementos </option>
+                    <option value="Nutraceuticos">Nutraceuticos </option>
+                    <option value="Oticos y Oftamologicos">Oticos y Oftamologicos </option>
+                    <option value="respiratorios">respiratorios </option>
+                    <option value="Seco">Seco </option>
+                    <option value="Shampoo medicado">Shampoo medicado </option>
+                    <option value="Shampoo, acondicionador y Colonia">Shampoo, acondicionador y Colonia </option>
+                    <option value="Snack">Snack </option>
+                    <option value="Suplementos">Suplementos </option>
+                    <option value="Terapias alternativas">Terapias alternativas </option>
+                    <option value="treats">treats </option>
                 </select>
             </div>
-        </form>
+        </div>
     </div>
 </section>
 
-<section id="contenido-productos">
+<div *ngIf="productoFiltro.nombre_del_producto || especieFiltro.especie || categoriaFiltro.categoria_del_producto || especialidadFiltro.especialidad_del_producto || sucategoriaFiltro.subcategoria_del_producto">
+    <hr>
+    <section id="filtros-aplicados">
+        <div class="container">
+            <div class="box-filtros">
+                <h6 *ngIf="productoFiltro.nombre_del_producto">
+                    <span (click)="limpiarproductoFiltro()">x</span>
+                    {{productoFiltro.nombre_del_producto}}
+                </h6>
+                <h6 *ngIf="especieFiltro.especie">
+                    <span (click)="limpiarespecieFiltro()">x</span>
+                    {{especieFiltro.especie}}
+                </h6>
+                <h6 *ngIf="categoriaFiltro.categoria_del_producto">
+                    <span (click)="limpiarcategoriaFiltro()">x</span>
+                    {{categoriaFiltro.categoria_del_producto}}
+                </h6>
+                <h6 *ngIf="especialidadFiltro.especialidad_del_producto">
+                    <span (click)="limpiarespecialidadFiltro()">x</span>
+                    {{especialidadFiltro.especialidad_del_producto}}
+                </h6>
+                <h6 *ngIf="sucategoriaFiltro.subcategoria_del_producto">
+                    <span (click)="limpiarsucategoriaFiltro()">x</span>
+                    {{sucategoriaFiltro.subcategoria_del_producto}}
+                </h6>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </section>
+    <button class="cta-morado borrar-filtro" (click)="limpiarFiltros()">Volver a todas las marcas</button>
+    <hr>
+</div>
+
+<section id="contenido-productos" *ngIf="!productoFiltro.nombre_del_producto && !especieFiltro.especie && !categoriaFiltro.categoria_del_producto && !especialidadFiltro.especialidad_del_producto && !sucategoriaFiltro.subcategoria_del_producto">
     <div class="container">
         <div class="row">
             <div class="col-6 col-md-2" *ngFor="let marca of marcas">
@@ -51,6 +179,68 @@
                     [marca] = "marca"
                 ></app-producto>                  
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="contenido-productos" *ngIf="productoFiltro.nombre_del_producto || especieFiltro.especie || categoriaFiltro.categoria_del_producto || especialidadFiltro.especialidad_del_producto || sucategoriaFiltro.subcategoria_del_producto">
+    <div class="container">
+        <button (click)="downloadSellected()" class="cta-blanco-b-morado borrar-filtro">Descargar seleccionados</button>
+        <div class="row">
+            <div class="col-md-4" *ngFor="let producto of productos | filterBy: productoFiltro | filterBy: especieFiltro | filterBy: especialidadFiltro | filterBy: categoriaFiltro | filterBy: sucategoriaFiltro | paginate: { itemsPerPage: 9, currentPage: p }">
+                <div class="box-item-campania">
+                    <!--<owl-carousel-o [options]="sliderProducto" *ngIf="producto.imagenes">
+                        <ng-template carouselSlide *ngFor="let img of producto.imagenes">
+                            <img class="img-fluid img-item-producto" src="{{url_productos}}{{img.imagen}}" alt="" />
+                        </ng-template>
+                    </owl-carousel-o>-->
+                    <img *ngIf="producto.imagenes" class="img-fluid img-item-producto" src="{{url_productos}}{{producto.imagenes[0].imagen}}" alt="" loading="lazy"/>
+                    <div *ngIf="!producto.imagenes">
+                        <img class="img-fluid img-item-producto" src="./assets/images/no-image.png" alt="">
+                    </div>
+                    
+                    <div class="box-txt-item-campania">
+                        <h4>{{producto.nombre_del_producto | replaces: "&ptncm" : ';'}}</h4>
+                        <p>
+                            Este paquete contiene:
+                        </p>
+                        <ul>
+                            <li *ngIf="producto.imagenes">Imágenes de producto</li>
+                            <li>Textos y descripciones</li>
+                        </ul>
+
+                        <button class="cta-blanco-b-morado" (click)="download(
+                            producto.nombre_del_producto, 
+                            producto.bullets, 
+                            producto.imagenes,
+                            producto.edad_etapa,
+                            producto.especie,
+                            producto.descripcion,
+                            producto.sabor,
+                            producto.contenido,
+                            producto.unidad_medida,
+                            producto.presentacion,
+                            producto.especialidad_del_producto,
+                            producto.marca,
+                            producto.subcategoria_del_producto,
+                            producto.instrucciones
+                        )">Descargar</button>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-1">
+                                    <input type="checkbox" name="seleccionar" id="seleccionar" #selec  class="from-control" (change)="check(producto, selec.checked)" class="from-control"/>
+                                </div>
+                                <div class="col">
+                                    <label for="seleccionar"> Selecciona para descargar varios paquetes de productos.</label>  
+                                </div>
+                            </div> 
+                        </div>                            
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="paginacion">
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
     </div>
 </section>

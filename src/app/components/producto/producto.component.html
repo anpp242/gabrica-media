@@ -1,5 +1,5 @@
 <div class="logo-interna-productos d-flex align-items-center">
     <a [routerLink]="['/catalogo-productos/marcas/' + marca.nombre_marca]">
-        {{marca.nombre_marca}}<img src="{{marca.logo}}" alt="">
+        <img class="img-fluid" id="ver-productos-{{marca.nombre_marca | cleanId }}" src="{{url}}{{marca.logo}}" alt="">
     </a>
 </div>  

@@ -4,7 +4,7 @@
         <div class="sl-txt">
             <h2>{{slide.titulo}}</h2>
             <p>{{slide.descripcion}}</p>
-            <a href="{{slide.call_to_action}}" class="cta-morado">¡Contactar RTC!</a>
+            <a *ngIf="slide.call_to_action" href="{{slide.call_to_action}}" class="cta-morado">Ver más</a>
         </div>
     </div>
 </div>

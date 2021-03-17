@@ -6,7 +6,7 @@
         <div class="box-txt-cabecera-campanias">
             <h1>Nuestras campañas</h1>
             <div id="tags">
-                <h6>Accede a las piezas gráficas para comunicación a padres de mascota.</h6>
+                <h6>Acceda material multimedia de nuestras marcas y campañas para comunicación en medios digitales y pantallas. </h6>
             </div>
         </div>
     </div>
@@ -14,14 +14,14 @@
 
 <div class="loader" *ngIf="!campanias">
     <div class="container text-center">
-        <img src="../../../assets/images/loader.gif" alt="" width="180"><br/>
+        <img src="./assets/images/loader.gif" alt="" width="180"><br/>
     </div>
 </div>
 
 <section id="contenido-interna">
     <div class="container">
         <div class="row" *ngIf="campanias">
-            <div class="col-md-4" *ngFor="let campania of campanias | slice : startPage:paginationLimit"  >
+            <div class="col-md-4" *ngFor="let campania of campanias | sortBy:'desc':'id' | slice : startPage:paginationLimit"  >
                 <app-campania
                     [campania]="campania"
                 ></app-campania>
@@ -33,7 +33,7 @@
         <button id="cargar-mas-promociones" *ngIf ="paginationLimit < campanias.length" (click)="showMoreItems()">
             Ver mas campañas
         </button>
-        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 3" (click)="showLessItems()">
+        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 6" (click)="showLessItems()">
             Ver menos campañas
         </button>
     </div>
@@ -41,10 +41,10 @@
 
 <!--Modal campania-->
 <div style="display: none; max-width: 740px;" id="hidden-content">
-    <img class="img-fluid" src="../../assets/images/cab-modal" alt="Titulo campaña"/>        
+    <img class="img-fluid" src="./assets/images/cab-modal" alt="Titulo campaña"/>        
     <div class="box-item-info-modal-campania">
         <div id="logo-interna" class="logo-modal-campania">
-            <img src="../../assets/images/Logo-max.svg" alt="Max">
+            <img src="./assets/images/Logo-max.svg" alt="Max">
         </div>
         <div class="row">
             <div class="col-md-7">
@@ -60,19 +60,19 @@
             <div class="col-md-5">
                 <ul>
                     <li>
-                        <a><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+                        <a><img src="./assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
                     </li>
                     <li>
-                        <a><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+                        <a><img src="./assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
                     </li>
                     <li>
-                        <a><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+                        <a><img src="./assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
                     </li>
                     <li>
-                        <a><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+                        <a><img src="./assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
                     </li>
                     <li>
-                        <a><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+                        <a><img src="./assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
                     </li>
                 </ul>
             </div>

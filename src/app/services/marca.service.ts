@@ -19,10 +19,15 @@ export class MarcaService{
     }
 
     getMarca(marca: string):Observable<any>{
-        return this._http.get(this.url + 'lista-catalogo/marca/' + marca);
+            return this._http.get(this.url + 'lista-catalogo/marca/' + marca, {
+        });
     }
 
     search(searchString):Observable<any>{
         return this._http.get(this.url + 'lista-catalogo/marca/ ' + searchString);
+    }
+
+    getAllProducts(){
+        return this._http.get(this.url + 'lista-catalogo');
     }
 }

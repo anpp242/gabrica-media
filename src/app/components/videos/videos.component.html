@@ -6,7 +6,7 @@
         <div class="box-txt-cabecera-campanias">
             <h1>Biblioteca de videos</h1>
             <div id="tags">
-                <h6>Descargue los videos de nuestras marcas para compartir con tus clientes.</h6>
+                <h6>En esta sección usted puede realizar la búsqueda de los productos del catálogo de Gabrica por marcas, especies, categorías y especialidades, para descargar sus imágenes y descripciones para páginas web y medios digitalesa</h6>
             </div>
         </div>
     </div>
@@ -14,30 +14,55 @@
 
 <div class="loader" *ngIf="!videos">
     <div class="container text-center">
-        <img src="../../../assets/images/loader.gif" alt="" width="180"><br/>
+        <img src="./assets/images/loader.gif" alt="" width="180"><br/>
     </div>
 </div>
 
-<section id="contenido-interna">
+<div class="marcas-videos" *ngIf="!marcaSeleccionada">
     <div class="container">
-        <div class="row" *ngIf="videos">
-            <div class="col-md-4" *ngFor="let video of videos | slice : startPage:paginationLimit">
-                <app-video 
-                    [video] = "video"
-                ></app-video>
-            </div>
+        <h2>Seleccione una marca</h2>
+        <p>Al seleccionar una marca podrá visualizar los diferentes recursos de video que tenemos para esta marca</p>
+        <ul class="row text-center">
+            <li class="col-md-2" *ngFor="let marca of marcas"  (click)="mortrarVideos(marca.marca)"><img src="{{marca.logo}}" alt="{{marca.marca}}" width="160"></li>
+        </ul>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div *ngIf="marcaSeleccionada" [ngClass]="{'col-md-3': marcaSeleccionada,'col-md-0': !marcaSeleccionada}">
+            <h4>Marca</h4>
+            <ul class="listado-marcas-lateral" *ngFor="let marca of marcas" >
+                <li (click)="mortrarVideos(marca.marca)">{{marca.marca | titlecase}}</li>
+            </ul>
+        </div>
+        <div [ngClass]="{'col-md-9': marcaSeleccionada,'col-md-3': !marcaSeleccionada}">
+            <section id="contenido-interna" *ngIf="videosMarca">
+                <div class="container">
+                    <h2 *ngIf="videosMarca.length > 0">Videos de {{marcaSeleccionada | titlecase}}</h2>
+                    <div class="row" *ngIf="videosMarca">            
+                        <div class="col-md-6" *ngFor="let video of videosMarca | slice : startPage:paginationLimit">
+                            <app-video 
+                                [video] = "video"
+                            ></app-video>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="container box-cargar-mas-promociones" *ngIf="videosMarca">
+                    <button id="cargar-mas-promociones" *ngIf ="paginationLimit < videosMarca.length" (click)="showMoreItems()">
+                        Cargar más videos
+                    </button>
+                    <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 6" (click)="showLessItems()">
+                        Cargar menos videos
+                    </button>
+                </div>  
+            </section>
         </div>
     </div>
+</div>
 
-    <div class="container box-cargar-mas-promociones" *ngIf="videos">
-        <button id="cargar-mas-promociones" *ngIf ="paginationLimit < videos.length" (click)="showMoreItems()">
-            Cargar más videos
-        </button>
-        <button id="cargar-mas-promociones" *ngIf ="paginationLimit > 3" (click)="showLessItems()">
-            Cargar menos videos
-        </button>
-    </div>  
-</section>
+
 
 <app-footer></app-footer>
 

@@ -11,7 +11,7 @@
         <hr/>
         <ul>
             <li>
-                <a [href]="url_recursos+video.video_url" download><img src="../../assets/images/ico-descarga.svg" width="22"/> Descargar video</a>
+                <a [href]="url_recursos+video.video_url" id="video-{{video.marca | cleanId}}-{{video.titulo | cleanId}}"  download><img src="./assets/images/ico-descarga.svg" width="22"/> Descargar video</a>
             </li>
         </ul>
     </div>

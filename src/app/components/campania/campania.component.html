@@ -8,20 +8,20 @@
             <a data-fancybox data-src="#hidden-content" href="javascript:;" class="conoce-mas" (click)="openModal(template)">Conoce más</a>
         <hr/>
         <ul>
-            <li>
-                <a [href]="url_recursos + campania.download_url" download><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+            <li *ngIf="campania.download_url">
+                <a [href]="url_recursos + campania.download_url" id="paquete-completo-{{campania.titulo | cleanId}}" download><img src="./assets/images/ico-descarga.svg" width="22"/> Descargar todos los archivos</a>
             </li>
-            <li>
-                <a [href]="url_recursos + campania.facebook_url" download><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+            <li *ngIf="campania.facebook_url">
+                <a [href]="url_recursos + campania.facebook_url" id="pieza-facebook-{{campania.titulo | cleanId}}" download><img src="./assets/images/ico-fb.svg" width="22"/> Piezas para Facebook e Instagram</a>
             </li>
-            <li>
-                <a [href]="url_recursos + campania.pantallas_url" download><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+            <li *ngIf="campania.pantallas_url">
+                <a [href]="url_recursos + campania.pantallas_url" id="pieza-pantallas-{{campania.titulo | cleanId}}" download><img src="./assets/images/ico-pantalla.svg" width="22"/> Banner para pantalllas TV</a>
             </li>
-            <li>
-                <a [href]="url_recursos + campania.email_url" download><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+            <li *ngIf="campania.email_url">
+                <a [href]="url_recursos + campania.email_url" id="pieza-youtube-{{campania.titulo | cleanId}}" download><img src="./assets/images/ico-email.svg" width="22"/> Pieza para Email</a>
             </li>
-            <li>
-                <a [href]="url_recursos + campania.whatsapp_url" download><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+            <li *ngIf="campania.whatsapp_url">
+                <a [href]="url_recursos + campania.whatsapp_url" id="pieza-whatsapp-{{campania.titulo | cleanId}}" download><img src="./assets/images/ico-wapp.svg" width="22"/> Piezas para Whatsapp</a>
             </li>
         </ul>
     </div>
@@ -30,7 +30,7 @@
 <ng-template #template>
     <a class="cerrar-modal" (click)="modalRef.hide()">X</a>   
     <div class="modal-body">
-        <img class="img-fluid" src="{{url_recursos}}{{campania.pantallas_url}}" alt="{{campania.titulo}}"/>        
+        <img class="img-fluid" src="{{url_recursos}}{{campania.imagen_card}}" alt="{{campania.titulo}}"/>        
         <div class="box-item-info-modal-campania">
             <div id="logo-interna" class="logo-modal-campania">
                 <img src="{{url_recursos}}{{campania.imagen_modal}}" alt="{{campania.titulo}}">
@@ -44,20 +44,30 @@
                 </div>
                 <div class="col-md-5">
                     <ul>
-                        <li>
-                            <a><img src="../../assets/images/ico-descarga.svg" width="22"/> Descarga todo los archivos</a>
+                        <li *ngIf="campania.download_url">
+                            <a [href]="url_recursos + campania.download_url">
+                                <img src="./assets/images/ico-descarga.svg" id="paquete-completo-modal-{{campania.titulo | cleanId}}" width="22" /> Descargar todos los archivos
+                            </a>
                         </li>
-                        <li>
-                            <a><img src="../../assets/images/ico-fb.svg" width="22"/> Comparte en Facebook</a>
+                        <li *ngIf="campania.facebook_url">
+                            <a [href]="url_recursos + campania.facebook_url">
+                                <img src="./assets/images/ico-fb.svg" width="22" id="pieza-facebook-modal-{{campania.titulo | cleanId}}"/> Piezas para Facebook e Instagram
+                            </a>
                         </li>
-                        <li>
-                            <a><img src="../../assets/images/ico-pantalla.svg" width="22"/> Descarga para pantallas</a>
+                        <li *ngIf="campania.pantallas_url">
+                            <a [href]="url_recursos + campania.pantallas_url">
+                                <img src="./assets/images/ico-pantalla.svg" width="22" id="pieza-pantallas-modal-{{campania.titulo | cleanId}}"/> Banner para pantalllas TV
+                            </a>
                         </li>
-                        <li>
-                            <a><img src="../../assets/images/ico-email.svg" width="22"/> Descarga para enviar e-mail</a>
+                        <li *ngIf="campania.email_url">
+                            <a [href]="url_recursos + campania.email_url">
+                                <img src="./assets/images/ico-email.svg" width="22" id="pieza-youtube-modal-{{campania.titulo | cleanId}}"/> Videos para Youtube y Pantallas
+                            </a>
                         </li>
-                        <li>
-                            <a><img src="../../assets/images/ico-wapp.svg" width="22"/> Comparte en WhatsApp</a>
+                        <li *ngIf="campania.whatsapp_url">
+                            <a [href]="url_recursos + campania.whatsapp_url">
+                                <img src="./assets/images/ico-wapp.svg" width="22" id="pieza-whatsapp-modal-{{campania.titulo | cleanId}}"/> Piezas para Whatsapp
+                            </a>
                         </li>
                     </ul>
                 </div>

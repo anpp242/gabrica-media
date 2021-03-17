@@ -11,7 +11,38 @@ h3{
 
 p{
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 400;
+}
+
+.borrar-filtro{
+    width:350px !important;
+    display: block;
+    margin: 0 auto !important;
+}
+
+#btn_cerrar{
+    position: absolute;
+    top: 12px;
+    right: 50px;
+    padding: 10px;
+    width: 270px;
+    border: 0;
+    background: #531ba2;
+    color: #ffffff;
+    transition: all .5s ease;
+    animation-name: downButton;
+    animation-duration: .3s;
+}
+
+#btn_cerrar:hover{
+    background: var(--azul);
+    color: #ffffff;
+    transition: all .5s ease;
+}
+
+@keyframes downButton {
+    from {top: -100px;}
+    to {top: 12px;}
 }
 
 button:focus {
@@ -46,7 +77,7 @@ button:focus {
 
 #login-form p{
     color: #3C3C3C;
-    font-weight: 200;
+    font-weight: 300;
     font-size: 16px;
     line-height: 24px;
 }
@@ -76,7 +107,7 @@ input:focus{
 
 .txt-legal{
     font-size: 14px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 #legal-login{
@@ -183,6 +214,7 @@ header{
     background-repeat: no-repeat;
     background-size: contain;
     height: 100%;
+    width: 100%;
     position: absolute;
     display: flex;
     z-index: 11000;
@@ -230,6 +262,11 @@ header{
 .box-slide-item-txt h2{
     font-size: 26px;
     font-weight: 600;
+    max-width: inherit;
+}
+
+.box-slide-item-txt p{
+    max-width: inherit;
 }
 
 
@@ -274,7 +311,7 @@ header{
 
 #modulos p{
     font-size: 14px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 #modulos .icos-modulos{
@@ -316,6 +353,57 @@ header{
     background: var(--azulOscuro);
 }
 
+.marcas-videos ul{
+    display: flex;
+    align-items: center;
+    padding-inline-start: 0px;
+}
+
+.marcas-videos li{
+    list-style: none;
+}
+
+.marcas-videos li:first-of-type{
+    list-style: none;
+    margin: 10px 0px;
+}
+
+.marcas-videos li:last-of-type{
+    list-style: none;
+    margin: 10px 0px;
+}
+
+.marcas-videos img{
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.marcas-videos img:hover{
+    opacity: .5;
+    transition: all .3s ease;
+}
+
+.listado-marcas-lateral{
+    padding-inline-start: 0px;
+}
+
+.listado-marcas-lateral li{
+    cursor: pointer;
+    list-style: none;
+    background-image: url('../images/ico-bullet.svg');
+    background-repeat: no-repeat;
+    transition: all .3s ease;
+    background-position: left center;
+    padding-left: 31px;
+    font-weight: 500;
+    color: var(--morado);
+}
+
+.listado-marcas-lateral li:hover{
+    margin-left:15px;
+    transition: all .3s ease;
+}
+
 .item-condiciones{
     border: 1px solid #EDEDED;
     box-sizing: border-box;
@@ -350,7 +438,7 @@ header{
 
 #condiciones-comerciales p{
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .item-second{
@@ -413,16 +501,23 @@ footer{
 }
 
 footer li{
-    font-weight: 200;
+    font-weight: 500;
     font-size: 14px;
     color: #3C3C3C;
 }
 
 footer a{
-    font-weight: 200;
+    font-weight: 500;
     font-size: 14px;
-    text-decoration: underline;
+    text-decoration: none;
     color: #3C3C3C;
+    transition: all .4s ease;
+}
+
+footer a:hover{
+    text-decoration: underline;
+    color: var(--azul);
+    transition: all .4s ease;
 }
 
 footer h3{
@@ -529,7 +624,7 @@ footer h3{
 
 #tags h6{
     color: #ffffff;
-    font-weight:200;
+    font-weight:300;
 }
 
 #box-fechas{
@@ -553,6 +648,13 @@ footer h3{
     margin: 0 auto;
     width: 100%;
     font-weight: 600;
+    transition: all .5s ease;
+}
+
+.cta-morado:hover{
+    background: var(--azul);
+    color: #ffffff;
+    transition: all .5s ease;
 }
 
 #banner-interna{
@@ -570,7 +672,7 @@ footer h3{
 
 #banner-interna p{
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 300;
     margin-bottom: 20px;
 }
 
@@ -702,7 +804,7 @@ footer h3{
 
 .box-item-info-modal-campania p{
     font-size: 16px;
-    font-weight: 200;
+    font-weight: 300;
 }
 
 .box-item-info-modal-campania ul{
@@ -754,7 +856,7 @@ footer h3{
 }
 
 #filtros {
-    margin-top: -15px;
+    margin-top: 40px;
 }
 
 #filtros input{
@@ -897,6 +999,7 @@ footer h3{
     z-index: 1000;
     transition: all .4s ease;
     align-items: center;
+    color: #ffffff;
 }
 
 .modal-dialog {

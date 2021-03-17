@@ -1,13 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵConsole } from '@angular/core';
 import { MarcaService } from '../../services/marca.service';
 import { ImagenesCatalogoService } from '../../services/imagenes.catalogo.service';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Global } from '../../services/global';
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { Producto } from '../../models/producto';
+import { AngularCsv } from 'angular-csv-ext/dist/Angular-csv';
 
 import * as JSZip from 'jszip';
 import * as FileSaver from 'file-saver';
 import * as JSZipUtils from 'file-saver';
+import { workerData } from 'worker_threads';
 
 @Component({
   selector: 'app-marca',
@@ -21,6 +24,12 @@ export class MarcaComponent implements OnInit {
   public marca: string;
   public url_productos: string;
   public codigos: object[];
+  startPage : Number;
+  paginationLimit:Number;
+  public masivo: object[];
+  public checks: object[];
+  public progreso : Number;
+  p: number = 1;
 
   //Filtros
   public productoFiltro: any = { nombre_del_producto: '' };
@@ -36,13 +45,15 @@ export class MarcaComponent implements OnInit {
     private _imagenesService: ImagenesCatalogoService
   ) { 
     this.url_productos = Global.url_productos;
+    this.masivo = [{}];
+    this.checks = [{}];
+    this.progreso = 0;
   }
 
   ngOnInit(): void {
 
     this._route.params.subscribe((params: Params)=>{
       this.marca = params.brand;
-      console.log(params.brand);
     });
 
     this._marcaService.getMarca(this.marca).subscribe(
@@ -51,7 +62,7 @@ export class MarcaComponent implements OnInit {
         
         this.productos.forEach(producto => {
           //console.log(producto['codigo_de_barras_padre']);
-          this._imagenesService.getImages(producto['codigo_de_barras_padre']).subscribe(
+          this._imagenesService.getImages(producto['ean']).subscribe(
             res=>{
               if(res.Contents != undefined || res.Contents != null){
                 producto['imagenes'] = [];
@@ -63,7 +74,7 @@ export class MarcaComponent implements OnInit {
                 }else{
                   producto['imagenes'].push({'imagen': res.Contents.Key});
                 }                
-                //console.log(res.Contents);
+                console.log(res.Contents);
               }
             },err=>{
               console.log(err);
@@ -75,34 +86,9 @@ export class MarcaComponent implements OnInit {
         console.log(err);
       }
     );
+    //console.log(this.productos);
   }
-
-  //Slide producto
-  sliderProducto: OwlOptions = {
-    loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: true,
-    dots: true,
-    navSpeed: 700,
-    navText: ['', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      }
-    },
-    nav: true
-  }
-
+  
   download(
       title:string, 
       bullets:string, 
@@ -127,7 +113,9 @@ export class MarcaComponent implements OnInit {
     let regex = new RegExp('&slto', 'g');
     let contL = bullets.replace(regex, "\r\n");
     
-    zip.file(this.title  + ".txt", `
+    let nameReg = this.title.replace('/', '-')
+    
+    zip.file(nameReg  + ".txt", `
 
 ${title}\r\n \r\n
 
@@ -181,7 +169,7 @@ ${instrucciones}\r\n \r\n
 
     for(let i = 0; i <= img.length-1; i++){
       //console.log(img[i]['imagen']);
-      let url = 'https://catalogobucket.s3.us-east-2.amazonaws.com/' + img[i]['imagen'];
+      let url = 'https://testgabrica.s3.us-east-2.amazonaws.com/' + img[i]['imagen'];
       imgFolder.file(img[i]['imagen'], fetch(url).then(response => response.blob()), {binary:true});
     }
 
@@ -213,4 +201,163 @@ ${instrucciones}\r\n \r\n
     this.sucategoriaFiltro = { subcategoria_del_producto: '' };
   }
 
+  check(obj, event){
+    if(event == true){
+      this.masivo.push(obj);
+    }else if(event == false){
+      let isLargeNumber = (element) => element['id'] === obj.id;
+      let indice = this.masivo.findIndex(isLargeNumber);
+      this.masivo.splice(-1,indice);      
+    } 
+  }  
+
+  downloadSellected(){
+    let seleccionados = this.masivo;
+    var zip = new JSZip();
+    for(let i = 0; i < seleccionados.length; i++){
+      if(seleccionados[i]['imagenes']){
+        let img = seleccionados[i]['imagenes'];
+        let nombreP = seleccionados[i]['nombre_del_producto'];
+        let imgFolder = zip.folder(nombreP.replace('/', '-'));
+
+        let regex = new RegExp('&slto', 'g');
+        let contL = seleccionados[i]['bullets'].replace(regex, "\r\n");
+
+        for(let i = 0; i <= img.length-1; i++){
+          let url = 'https://testgabrica.s3.us-east-2.amazonaws.com/' + img[i]['imagen'];
+          imgFolder.file(img[i]['imagen'], fetch(url).then(response => response.blob()), {binary:true});
+        }
+      }
+    }
+
+    //create a CSV file
+      var str = "#;ID;Nombre del Producto;Marca;Categoría del Producto;Sub categoría del producto;Descripción;Sabor;Bullets;Contenido;Peso en KG con empaque;Edad o Etapa;Especialidad del producto;Especie;Ingredientes;Análisis garantizado;Código de barras padre;EAN;Instrucciones;IVA;Keywords;Medida Alto;Medida Ancho;Presentación;SKU;Imágenes \n";
+      let i = 0;
+      for(var item of seleccionados ){
+        if(i != 0){
+          let imagenes = '';
+          if(item['imagenes']){
+            item['imagenes'].forEach(e => {
+              imagenes += e['imagen'] + ' | ';
+            });
+          }     
+
+          let regex = new RegExp('<br>');
+          let analisisGarantizado = item['analisis_garantizado'];
+
+          if(item['analisis_garantizado'] != undefined){
+            analisisGarantizado = item['analisis_garantizado'].replace(regex, " * ");
+          }else{
+            analisisGarantizado = '';
+          }
+
+          if(item['medida_alto'] === undefined){
+            item['medida_alto'] = ''
+          }
+
+          if(item['medida_ancho'] === undefined){
+            item['medida_ancho'] = ''
+          }
+          
+          
+          str += `${i};${item['id']};${item['nombre_del_producto']};${item['marca']};${item['categoria_del_producto']};${item['subcategoria_del_producto']};${item['descripcion']};${item['sabor']};${item['bullets']};${item['contenido']};${item['unidad_medida']};${item['edad_etapa']};${item['especialidad_del_producto']};${item['especie']};${item['ingredientes']};${analisisGarantizado};${item['codigo_de_barras_padre']};${item['ean']};${item['instrucciones']};${item['iva']};${item['keywords']};${item['medida_alto']};${item['medida_ancho']};${item['presentacion']};${item['sku']};${imagenes};\n`;
+        }
+        i++;
+      }
+      zip.file("Catálogo Gabrica.csv",str, {binary:true});
+    //end of creation file
+
+    zip.generateAsync({ type: "blob" })
+      .then(function (content) {
+      FileSaver.saveAs(content, 'Gabrica' + ".zip");
+    });
+
+  }
+
+  downloadAll(){
+    let seleccionados = this.productos;
+    //console.log(seleccionados);
+
+    var zip = new JSZip();
+
+    for(let i = 0; i < seleccionados.length; i++){
+      if(seleccionados[i]['imagenes']){
+        let img = seleccionados[i]['imagenes'];
+        let nombreP = seleccionados[i]['nombre_del_producto'];
+
+        let regexNombre = new RegExp('/');
+        let NombreLimpio = seleccionados[i]['nombre_del_producto'].replace(regexNombre, " ");
+
+        let imgFolder = zip.folder(NombreLimpio);
+
+        let regex = new RegExp('&slto', 'g');
+        let contL = seleccionados[i]['bullets'].replace(regex, "\r\n");
+
+        
+
+        for(let i = 0; i <= img.length-1; i++){
+          let url = 'https://testgabrica.s3.us-east-2.amazonaws.com/' + img[i]['imagen'];
+          imgFolder.file(img[i]['imagen'], fetch(url).then(response => response.blob()), {binary:true});
+        }
+        zip.file(NombreLimpio  + ".txt", `
+
+${seleccionados[i]['nombre_del_producto']}\r\n \r\n
+
+\bBullets:\b \r\n
+${contL}\r\n \r\n
+
+\bContenido:\b \r\n
+${seleccionados[i]['descripcion']}\r\n \r\n
+
+\bEdad:\b \r\n
+${seleccionados[i]['edad_etapa']}\r\n \r\n
+
+\bEspecie:\b \r\n
+${seleccionados[i]['especie']}\r\n \r\n
+
+\bSabor:\b \r\n
+${seleccionados[i]['sabor']}\r\n \r\n
+
+\bContenido:\b \r\n
+${seleccionados[i]['contenido']} ${seleccionados[i]['unidad_medida']}\r\n \r\n
+
+\bPresentación:\b \r\n
+${seleccionados[i]['presentacion']}\r\n \r\n
+
+\bEspecialidad del producto:\b \r\n
+${seleccionados[i]['especialidad_del_producto']}\r\n \r\n
+
+\bMarca:\b \r\n
+${seleccionados[i]['marca']}\r\n \r\n
+
+\bSub-categoría:\b \r\n
+${seleccionados[i]['subcategoria_del_producto']}\r\n \r\n
+
+\bInstrucciones:\b \r\n
+${seleccionados[i]['instrucciones']}\r\n \r\n
+
+    `);   
+      }
+    }
+
+    zip.generateAsync({ type: "blob" }, function updateCallback(metadata) {
+      console.log("progression: " + metadata.percent.toFixed(2) + " %");
+      let avance = metadata.percent.toFixed(2);
+      if(parseInt(avance) == 100){
+        this.progreso = true;
+      }
+    })
+      .then(function (content) {
+      FileSaver.saveAs(content, 'Gabrica' + ".zip");
+    });
+  }
+
+  limpiarFiltros(){
+    this.limpiarproductoFiltro();
+    this.limpiarespecieFiltro();
+    this.limpiarcategoriaFiltro();
+    this.limpiarespecialidadFiltro();
+    this.limpiarsucategoriaFiltro();
+  }
+    
 }

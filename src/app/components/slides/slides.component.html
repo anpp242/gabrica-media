@@ -6,7 +6,7 @@
 
 <section id="slider-home">
     <owl-carousel-o [options]="sliderHomeOptions" *ngIf="slides">
-        <ng-template carouselSlide *ngFor="let slide of slides">
+        <ng-template carouselSlide *ngFor="let slide of slides | sortBy:'asc':'id'">
             <app-slide
                 [slide] = "slide"
             ></app-slide>

@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('segmento', this.usuario.segmento);
           this._router.navigate(['/inicio']);
           //console.log(this.usuario);
+          this.guardarSesion();
         }else{
           console.log('error');
           alert('El usuario no se ha encontrado');
@@ -49,4 +50,17 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  guardarSesion(){
+    const nitUsuario = {nitUsuario: this.usuario.id_cliente};
+    this._usuarioService.registrarEntrada(nitUsuario).subscribe( 
+      data =>{
+        console.log(data);
+      },err=>{
+        console.log(err);
+      }
+    );
+  }
+
 }
+
+
