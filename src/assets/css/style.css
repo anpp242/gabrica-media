@@ -353,6 +353,10 @@ header{
     background: var(--azulOscuro);
 }
 
+#fichas-tecnicas{
+    background: var(--morado);
+}
+
 .marcas-videos ul{
     display: flex;
     align-items: center;

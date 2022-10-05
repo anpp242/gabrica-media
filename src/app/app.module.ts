@@ -36,6 +36,7 @@ import { NgFallimgModule } from 'ng-fallimg';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { CleanId } from './pipes/cleanId.pipe';
 import { SortByPipe } from './pipes/order.pipe';
+import { FichasTecnicasComponent } from './components/fichas-tecnicas/fichas-tecnicas.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SortByPipe } from './pipes/order.pipe';
     MarcaComponent,
     ReplaceString,
     CleanId,
-    SortByPipe
+    SortByPipe,
+    FichasTecnicasComponent
   ],
   imports: [
     BrowserModule,
