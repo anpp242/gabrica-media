@@ -10,9 +10,13 @@ import { Global } from '../../services/global';
 })
 export class ProductoComponent implements OnInit {
   @Input() marca : Marca;
+  @Input() ficha : any;
+  public link: string;
+
   public url: string;
   constructor() {
     this.url = Global.url_logos;
+    this.link = this.ficha ? '/catalogo-productos/marcas/' : '/listado-fichas/'
   }
 
   ngOnInit(): void {

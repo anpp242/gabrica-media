@@ -37,6 +37,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { CleanId } from './pipes/cleanId.pipe';
 import { SortByPipe } from './pipes/order.pipe';
 import { FichasTecnicasComponent } from './components/fichas-tecnicas/fichas-tecnicas.component';
+import { ListadoFichasComponent } from './components/listado-fichas/listado-fichas.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { FichasTecnicasComponent } from './components/fichas-tecnicas/fichas-tec
     ReplaceString,
     CleanId,
     SortByPipe,
-    FichasTecnicasComponent
+    FichasTecnicasComponent,
+    ListadoFichasComponent
   ],
   imports: [
     BrowserModule,

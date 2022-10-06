@@ -11,6 +11,8 @@ import {  VideosComponent  } from './components/videos/videos.component';
 import {  ErrorComponent  } from './components/error/error.component';
 import {  CheckLoginGuard  } from './guards/check-login.guard';
 import {  MarcaComponent  } from './components/marca/marca.component';
+import { FichasTecnicasComponent } from './components/fichas-tecnicas/fichas-tecnicas.component';
+import { ListadoFichasComponent } from './components/listado-fichas/listado-fichas.component';
 
 //Array de rutas
 const appRoutes: Routes = [
@@ -56,6 +58,16 @@ const appRoutes: Routes = [
     { 
         path: "catalogo-productos/marcas/:brand", 
         component: MarcaComponent,
+        canActivate: [CheckLoginGuard]
+    },
+    { 
+        path: "fichas-tecnicas", 
+        component: FichasTecnicasComponent,
+        canActivate: [CheckLoginGuard]
+    },
+    { 
+        path: "listado-fichas/:brand", 
+        component: ListadoFichasComponent,
         canActivate: [CheckLoginGuard]
     },
     { 

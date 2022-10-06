@@ -1,1 +1,29 @@
-<p>fichas-tecnicas works!</p>
+<app-header></app-header>
+<app-menu></app-menu>
+
+<section id="cabecera-interna" class="cabecera-videos">
+    <div class="container d-flex align-items-center ">
+        <div class="box-txt-cabecera-campanias">
+            <h1>Catálogo de productos</h1>
+            <div id="tags">
+                <h6>En esta sección usted puede realizar la búsqueda de los productos del catálogo de Gabrica por marcas, especies, categorías y especialidades, para descargar sus imágenes y descripciones para páginas web y medios digitalesa</h6>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contenido-productos">
+    <div class="container">
+        <div class="row">
+            <div class="col-6 col-md-2" *ngFor="let marca of marcas">
+                <app-producto
+                    [marca] = "marca"
+                    [ficha] = "true"
+                ></app-producto>                  
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>
+
