@@ -6,7 +6,7 @@
         <div class="box-txt-cabecera-campanias">
             <h1>Listado de fichas técnicas de {{marca | lowercase}}</h1>
             <div id="tags">
-                <h6>En esta sección usted puede realizar la búsqueda de los productos del catálogo de Gabrica por marcas, especies, categorías y especialidades, para descargar sus imágenes y descripciones para páginas web y medios digitalesa</h6>
+                <!-- <h6>En esta sección usted puede realizar la búsqueda de los productos del catálogo de Gabrica por marcas, especies, categorías y especialidades, para descargar sus imágenes y descripciones para páginas web y medios digitalesa</h6> -->
             </div>
         </div>
     </div>
@@ -14,6 +14,9 @@
 
 <section id="contenido-productos">
     <div class="container">
+        <button class="btn btn-primary" (click)="back()">
+            <img src="/assets/images/back.png" width="20" alt="back"> Volver 
+        </button>
         <table class="table table-striped" width="100%" border="0">
             <thead>
                 <th scope="row">
@@ -24,12 +27,21 @@
                 </th>
             </thead>
             <tbody>
-                <tr *ngFor="let ficha of fichas">
-                    <td>
-                        {{ficha.name}}
-                    </td>
-                    <td>
-                        <a [href]="ficha.key" target="_blank"><img src="/assets/images/download-pdf.png" alt="download" width="32"></a>
+                <ng-container *ngIf="fichas">
+                    <tr *ngFor="let ficha of fichas">
+                        <td>
+                            {{ficha.name}}
+                        </td>
+                        <td>
+                            <a [href]="ficha.key" target="_blank"><img src="/assets/images/download-pdf.png" alt="download" width="32"></a>
+                        </td>
+                    </tr>
+                </ng-container>
+                <tr *ngIf="fichas.length <= 0">
+                    <td colspan="2">
+                        <div class="alert alert-danger">
+                            No hay fichas disponibles para esta marca
+                        </div>
                     </td>
                 </tr>
             </tbody>
